@@ -23,12 +23,11 @@ import * as filters from './filters' // global filters
 import * as echarts from 'echarts'
 Vue.prototype.$echarts = echarts
 /**
- * If you don't want to use mock-server
- * you want to use MockJs for mock api
- * you can execute: mockXHR()
- *
- * Currently MockJs will be used in the production environment,
- * please remove it before going online ! ! !
+ 如果不想使用模拟服务器，则必须将404页面放置在endIf中
+ 你想使用MockJs来模拟api
+ 你可以执行:
+ 目前MockJs将用于生产环境，
+ 请在上线前删除!！
  */
 if (process.env.NODE_ENV === 'production') {
   const { mockXHR } = require('../mock')
