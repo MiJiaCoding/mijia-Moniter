@@ -84,6 +84,23 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/Exception_monitoring',
+    component: Layout,
+    redirect: '/Exception_monitoring/exception',
+    name: 'Exception_monitoring',
+    children: [
+      {
+        path: 'exception',
+        component: () => import('@/views/Exception_monitoring/exception'),
+        name: 'exception',
+        meta: {
+          title: '健康状况',
+          icon: 'el-icon-warning'
+        }
+      }
+    ]
+  },
+  {
     path: '/documentation',
     component: Layout,
     children: [
