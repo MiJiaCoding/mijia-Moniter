@@ -1,5 +1,5 @@
 <template>
-  <div id="APIerror" class="main_container" />
+  <div id="Custom_error" class="main_container" />
 </template>
 <script>
 import '/mock/error-counts-mock.js'
@@ -34,13 +34,13 @@ export default {
         '23:00',
         '24:00'
       ],
-      API_error: []
+      Custom_error: []
     }
   },
   watch: {
     option: {
       handler(options) {
-        this.APIerror_Chart.setOption(this.options)
+        this.Custom_error_Chart.setOption(this.options)
       },
       deep: true
     }
@@ -51,10 +51,10 @@ export default {
   methods: {
     initCharts(data) {
       // 基于准备好的dom，初始化echarts实例
-      var APIerror = document.getElementById('APIerror')
-      var APIerror_Chart = this.$echarts.init(APIerror)
+      var Custom_error = document.getElementById('Custom_error')
+      var Custom_error_Chart = this.$echarts.init(Custom_error)
       // 绘制图表
-      APIerror_Chart.setOption({
+      Custom_error_Chart.setOption({
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -68,7 +68,7 @@ export default {
         yAxis: {},
         series: [
           {
-            name: '接口请求报错次数',
+            name: '自定义异常报错次数',
             type: 'line',
             data: data
           }
@@ -79,9 +79,9 @@ export default {
     async drawCharts() {
       const info = await axios.post('/error/counts', { data: this.timeline })
       for (var i of info.data.error) {
-        this.API_error.push(i.counts)
+        this.Custom_error.push(i.counts)
       }
-      await this.initCharts(this.API_error)
+      await this.initCharts(this.Custom_error)
     }
   }
 }

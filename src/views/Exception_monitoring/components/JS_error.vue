@@ -2,7 +2,7 @@
   <div id="JSerror" class="main_container" />
 </template>
 <script>
-import '../mock/jsmock.js'
+import '/mock/error-counts-mock.js'
 import axios from 'axios'
 export default {
   data: function() {
@@ -37,6 +37,7 @@ export default {
       js_error: []
     }
   },
+
   watch: {
     // option:{
     //   handler(options){
@@ -46,17 +47,29 @@ export default {
     // },
   },
   mounted() {
-    this.fetch_js_error(this.timeline)
+    // function drawCharts() {
+    //   return new Promise((resolve, reject) => {
+    //   this.fetch_js_error(this.timeline)
+    // }).then((data) =>{
+    //   console.log(this.js_error)
+    //   this.initCharts()
+    // })
+    // }
+    // this.fetch_js_error(this.timeline)
     // this.fetch_js_error(this.timeline).then(function (data) {
-    this.initCharts()
     // });
+
+    this.drawCharts()
   },
   methods: {
-    initCharts() {
+    initCharts(data) {
       // 基于准备好的dom，初始化echarts实例
       var JSerror = document.getElementById('JSerror')
       var JSerror_Chart = this.$echarts.init(JSerror)
       // 绘制图表
+      // console.log("js_error:");
+      // console.log(this.js_error);
+      // console.log(data)
       JSerror_Chart.setOption({
         tooltip: {
           trigger: 'axis',
@@ -73,29 +86,18 @@ export default {
           {
             name: 'js报错次数',
             type: 'line',
-            data: this.js_error
+            data: data
           }
         ]
       })
     },
-    fetch_js_error(date) {
-    // var p = new Promise(function(resolve, reject){
-      axios
-        .post('/jserror/counts', {
-          data: date
-        })
-        .then((res) => {
-          console.log('000000000000000000000')
-          var response = res
-          // console.log(res)
-          // console.log(response.data.jserror)
-          for (var i of response.data.jserror) {
-            // console.log(i.counts)
-            this.js_error.push(i.counts)
-          }
-          console.log(this.js_error)
-        })
-      // return this.js_error;
+
+    async drawCharts() {
+      const info = await axios.post('/error/counts', { data: this.timeline })
+      for (var i of info.data.error) {
+        this.js_error.push(i.counts)
+      }
+      await this.initCharts(this.js_error)
     }
   }
 }

@@ -1,13 +1,13 @@
 const Mock = require("mockjs")
 const jserror_url = 'http://localhost:9527/jserror/counts'
 
-let jserror = Mock.mock({
-    "jserror|24":[{
+let error_counts = Mock.mock({
+    "error|24":[{
         "counts|50-250":0,
     }],
 })
-Mock.mock("/jserror/counts", 'post', ()=>{
-    return jserror
+Mock.mock("/error/counts", 'post', ()=>{
+    return error_counts
 })
 // module.exports = [
 //     {

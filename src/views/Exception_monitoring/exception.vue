@@ -25,9 +25,62 @@
     </el-row>
     <el-row>
       <el-card style="width: 98%; margin: 1% auto 0 auto">
-        <el-image style="width: 25%" :src="require('./JS002.png')" />
-        <el-divider direction="vertical" />
-        <el-image style="width: 70%" :src="require('./JS003.png')" />
+        <div style="text-align:center">
+          <div class="circleBox_big">
+            <el-progress
+              :show-text="false"
+              type="circle"
+              :percentage="health_grade"
+              :color="health_grade_color"
+              :stroke-width="20"
+              width="250"
+            />
+            <div class="circleCenter"><div style="font-size:100px">{{ health_grade }}</div><div style="font-size:20px">健康状态</div></div>
+          </div>
+          <!-- <el-image style="width: 25%" :src="require('./JS002.png')" /> -->
+          <el-divider direction="vertical" />
+          <div class="circleBox">
+            <el-progress
+              type="circle"
+              :percentage="21.6"
+              :color="health_grade_color"
+              :stroke-width="10"
+              width="120"
+            />
+            <div>JS错误</div>
+          </div>
+          <div class="circleBox">
+            <el-progress
+              type="circle"
+              :percentage="14.5"
+              :color="health_grade_color"
+              :stroke-width="10"
+              width="120"
+            />
+            <div>自定义异常</div>
+          </div>
+          <div class="circleBox">
+            <el-progress
+              type="circle"
+              :percentage="10.7"
+              :color="health_grade_color"
+              :stroke-width="10"
+              width="120"
+            />
+            <div>静态资源异常</div>
+          </div>
+          <div class="circleBox">
+            <el-progress
+              type="circle"
+              :percentage="14.5"
+              :color="health_grade_color"
+              :stroke-width="10"
+              width="120"
+            />
+            <div>接口异常</div>
+          </div>
+        <!-- <el-image style="width: 70%" :src="require('./JS003.png')" /> -->
+        </div>
       </el-card>
     </el-row>
     <el-row style="margin: auto 0.5%">
@@ -54,7 +107,7 @@
           <div>
             <div>自定义异常趋势 ></div>
             <div style="font-size: 10px">{{ pick_date }}</div>
-            <!-- <Customerror /> -->
+            <Customerror />
           </div>
         </el-card>
       </el-col>
@@ -63,7 +116,7 @@
           <div>
             <div>静态资源加载报错 ></div>
             <div style="font-size: 10px">{{ pick_date }}</div>
-            <!-- <Assetserror /> -->
+            <Assetserror />
           </div>
         </el-card>
       </el-col>
@@ -73,23 +126,31 @@
 <script>
 import JSerror from './components/JS_error.vue'
 import APIerror from './components/API_error.vue'
-
-import request from '@/utils/request'
+import Customerror from './components/Custom_error'
+import Assetserror from './components/Assets_error.vue'
+// import request from '@/utils/request'
 
 export default {
   components: {
     JSerror,
-    APIerror
+    APIerror,
+    Customerror,
+    Assetserror
   },
   data: function() {
     return {
-      pick_date: ''
+      pick_date: '',
+      health_grade: 86,
+      health_grade_color: 'YellowGreen'
     }
   },
   mounted() {
     var date = new Date()
     var year = date.getFullYear()
-    var month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
+    var month =
+      date.getMonth() + 1 < 10
+        ? '0' + (date.getMonth() + 1)
+        : date.getMonth() + 1
     var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
     this.pick_date = year + '-' + month + '-' + day
     console.log(this.pick_date)
@@ -120,5 +181,25 @@ export default {
   width: 350px;
   height: 250px;
   overflow: hidden;
+}
+.circleBox_big{
+  position: relative;
+  text-align: center;
+  margin: 1% 0 0 0;
+  width: 20%;
+  display: inline-block;
+}
+.circleBox{
+  position: relative;
+  text-align: center;
+  margin: 0 0 0 0;
+  width: 15%;
+  display: inline-block;
+
+}
+.circleCenter{
+  position: absolute;
+  top:25%;
+  left:33%;
 }
 </style>
