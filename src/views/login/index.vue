@@ -8,23 +8,24 @@
       class="logincon"
     >
       <div class="tit">登录</div>
-      <el-form-item label="" prop="phone">
+      <el-form-item prop="username">
         <el-input
-          v-model="user.phone"
+          ref="username"
+          v-model="user.username"
           type="text"
           placeholder="账号"
-          @blur.native.capture="searchPhone"
         />
       </el-form-item>
       <el-form-item prop="password">
         <el-input
+          ref="password"
           v-model="user.password"
           type="password"
           placeholder="密码"
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="userLogin">提交</el-button>
+        <el-button type="primary" @click.native.prevent="userLogin">提交</el-button>
       </el-form-item>
       <span>其他方式登录 </span><a href="#">QQ</a>
       <a href="#">微信</a>
@@ -40,17 +41,17 @@ export default {
   data() {
     return {
       user: {
-        phone: '',
-        password: ''
+        username: 'admin',
+        password: '111111'
       },
       rules: {
-        phone: [
-          { required: true, message: '请输入手机号', trigger: 'blur' },
-          {
-            pattern: /^1\d{10}$/,
-            message: '请輸入正确的格式',
-            trigger: 'blur'
-          }
+        username: [
+          { required: true, message: '请输入手机号', trigger: 'blur' }
+          // {
+          //   pattern: /^1\d{10}$/,
+          //   message: '请輸入正确的格式',
+          //   trigger: 'blur'
+          // }
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' }
@@ -60,16 +61,47 @@ export default {
           //   trigger: "blur",
           // },
         ]
-      }
+      },
+      redirect: undefined
+    }
+  },
+  watch: {
+    $route: {
+      handler: function(route) {
+        this.redirect = route.query && route.query.redirect
+      },
+      loading: false,
+      immediate: true
+    }
+  },
+  mounted() {
+    if (this.user.username === '') {
+      this.$refs.username.focus()
+    } else if (this.user.password === '') {
+      this.$refs.password.focus()
     }
   },
   methods: {
     userLogin() {
+      this.$refs.userForm.validate(valid => {
+        if (valid) {
+          this.loading = true
+          this.$store.dispatch('user/login', this.user).then(() => {
+            this.$router.push({ path: this.redirect || '/' })
+            this.loading = false
+          }).catch(() => {
+            this.loading = false
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
       // this.$refs.userForm.validate(async (valid) => {
       //   if (valid) {
       //     try {
-      //       const { phone, password } = this.user;
-      //       await this.$store.dispatch("UserLogin", { phone, password });
+      //       const { username, password } = this.user;
+      //       await this.$store.dispatch("UserLogin", { username, password });
       //       let toPath = this.$route.query.path || "/home";
       //       this.$router.push(toPath);
 
@@ -78,14 +110,14 @@ export default {
       //     }
       //   }
       // });
-    },
-    // 手机号输入框失去焦点后后触发
-    searchPhone() {
-      // 表单验证通过
-      // if(this.user.phone === code.decrypt(Cookies.get('phone'))){
-      //   this.user.password = code.decrypt(Cookies.get('password'))
-      // }
     }
+    // 手机号输入框失去焦点后后触发
+    // searchusername() {
+    // 表单验证通过
+    // if(this.user.username === code.decrypt(Cookies.get('username'))){
+    //   this.user.password = code.decrypt(Cookies.get('password'))
+    // }
+    // },
   }
 }
 </script>
