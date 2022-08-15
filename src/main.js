@@ -16,7 +16,27 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 
+
 Vue.use(Element)
+=======
+import * as echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+/**
+ 如果不想使用模拟服务器，则必须将404页面放置在endIf中
+ 你想使用MockJs来模拟api
+ 你可以执行:
+ 目前MockJs将用于生产环境，
+ 请在上线前删除!！
+ */
+if (process.env.NODE_ENV === 'production') {
+  const { mockXHR } = require('../mock')
+  mockXHR()
+}
+
+Vue.use(Element, {
+  size: Cookies.get('size') || 'medium', // set element-ui default size
+  locale: enLang // 如果使用中文，无需设置，请删除
+})
 
 // register global utility filters
 Object.keys(filters).forEach(key => {
