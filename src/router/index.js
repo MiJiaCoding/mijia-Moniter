@@ -61,8 +61,7 @@ export const constantRoutes = [
   },
   {
 
-    path: '/exception',
-
+    // path: '/exception',
     path: '/Exception_monitoring',
     component: Layout,
     redirect: '/Exception_monitoring/exception',
