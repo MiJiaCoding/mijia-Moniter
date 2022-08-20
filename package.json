@@ -21,8 +21,8 @@
     "core-js": "3.6.5",
     "driver.js": "0.9.5",
     "dropzone": "5.5.1",
-    "echarts": "4.2.1",
     "element-ui": "^2.15.9",
+    "echarts": "^4.9.0",
     "file-saver": "2.0.1",
     "fuse.js": "3.4.4",
     "js-cookie": "2.2.0",
@@ -45,6 +45,7 @@
     "xlsx": "0.14.1"
   },
   "devDependencies": {
+    "@types/echarts": "^4.9.16",
     "@vue/cli-plugin-babel": "4.4.4",
     "@vue/cli-plugin-eslint": "4.4.4",
     "@vue/cli-plugin-unit-jest": "4.4.4",

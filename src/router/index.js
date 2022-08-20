@@ -39,7 +39,27 @@ export const constantRoutes = [
     redirect: '/exception/index'
   },
   {
+
     path: '/exception',
+
+    path: '/Exception_monitoring',
+    component: Layout,
+    redirect: '/Exception_monitoring/exception',
+    name: 'Exception_monitoring',
+    children: [
+      {
+        path: 'exception',
+        component: () => import('@/views/Exception_monitoring/exception'),
+        name: 'exception',
+        meta: {
+          title: '健康状况',
+          icon: 'el-icon-warning'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation',
     component: Layout,
     redirect: '/exception/index', // 重定向地址，在面包屑中点击会重定向去的地址
     alwaysShow: true, // 一直显示根路由
