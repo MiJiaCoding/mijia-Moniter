@@ -7,27 +7,6 @@ Vue.use(Router)
 import Layout from '@/layout'
 
 /**
- * Note: sub-menu only appear when route children.length >= 1
- * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
- *
- * hidden: true                   if set true, item will not show in the sidebar(default is false)
- * alwaysShow: true               if set true, will always show the root menu
- *                                if not set alwaysShow, when item has more than one children route,
- *                                it will becomes nested mode, otherwise not show the root menu
- * redirect: noRedirect           if set noRedirect will no redirect in the breadcrumb
- * name:'router-name'             the name is used by <keep-alive> (must set!!!)
- * meta : {
-    roles: ['admin','editor']    control the page roles (you can set multiple roles)
-    title: 'title'               the name show in sidebar and breadcrumb (recommend set)
-    icon: 'svg-name'/'el-icon-x' the icon show in the sidebar
-    noCache: true                if set true, the page will no be cached(default is false)
-    affix: true                  if set true, the tag will affix in the tags-view
-    breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
-    activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
-  }
- */
-
-/**
  * constantRoutes
  * 没有权限要求的基页
  * 所有角色均可访问
@@ -57,29 +36,47 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/exception'
+    redirect: '/exception/index'
   },
   {
     path: '/exception',
     component: Layout,
+    redirect: '/exception/index', // 重定向地址，在面包屑中点击会重定向去的地址
+    alwaysShow: true, // 一直显示根路由
+    meta: { title: '异常监控', icon: 'documentation' },
     children: [
       {
         path: 'index',
         component: () => import('@/views/exception/index'),
         name: 'Exception',
-        meta: { title: '异常监控', icon: 'documentation', affix: true }
+        meta: { title: '异常监控', icon: 'documentation', affix: false }
+      },
+      {
+        path: 'xxx',
+        component: () => import('@/views/exception/index'),
+        name: 'xxx',
+        meta: { title: '异常监控', icon: 'documentation', affix: false }
       }
     ]
   },
   {
     path: '/keydata',
     component: Layout,
+    redirect: '/keydata/index', // 重定向地址，在面包屑中点击会重定向去的地址
+    alwaysShow: true, // 一直显示根路由
+    meta: { title: '性能监控', icon: 'documentation' },
     children: [
       {
         path: 'index',
         component: () => import('@/views/keydata/index'),
         name: 'KeyData',
-        meta: { title: '性能监控', icon: 'dashboard', affix: true }
+        meta: { title: '数据统计', icon: 'dashboard', affix: false }
+      },
+      {
+        path: 'detail',
+        component: () => import('@/views/keydata/detail'),
+        name: 'Detail',
+        meta: { title: '详情', icon: 'dashboard', affix: false }
       }
     ]
   },
@@ -89,9 +86,9 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/keydata/index'),
+        component: () => import('@/views/httprequest/index'),
         name: 'HttpRequest',
-        meta: { title: 'HTTP请求监控', icon: 'guide', affix: true }
+        meta: { title: 'HTTP请求监控', icon: 'guide' }
       }
     ]
   },
@@ -103,7 +100,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/useraction/index'),
         name: 'UserAction',
-        meta: { title: '用户行为数据', icon: 'documentation', affix: true }
+        meta: { title: '用户行为数据', icon: 'documentation', affix: false }
       }
     ]
   }
@@ -116,7 +113,6 @@ const createRouter = () => new Router({
 })
 
 const router = createRouter()
-
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter()

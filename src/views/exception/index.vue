@@ -1,5 +1,5 @@
 <template>
-  <div>Exception</div>
+  <div>exception</div>
 </template>
 
 <script>
