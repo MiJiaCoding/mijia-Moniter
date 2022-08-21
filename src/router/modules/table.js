@@ -37,5 +37,6 @@ const tableRouter = {
       meta: { title: 'Complex Table' }
     }
   ]
+  
 }
 export default tableRouter

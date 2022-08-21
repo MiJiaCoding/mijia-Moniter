@@ -49,21 +49,25 @@ export const constantRoutes = [
     component: () => import('@/views/login/index'),
     hidden: true
   },
-  {
-    path: '/auth-redirect',
-    component: () => import('@/views/login/auth-redirect'),
-    hidden: true
-  },
+  // {
+  //   path: '/auth-redirect',
+  //   component: () => import('@/views/login/auth-redirect'),
+  //   hidden: true
+  // },
   {
     path: '/',
     component: Layout,
-    redirect: '/exception'
+    // redirect: '/exception'
+    redirect:'/Exception_monitoring'
   },
   {
 
     // path: '/exception',
     path: '/Exception_monitoring',
     component: Layout,
+    //http://localhost:9528/#/Exception_monitoring/exception
+
+    // http://localhost:9528/#/exception/exception
     redirect: '/Exception_monitoring/exception',
     name: 'Exception_monitoring',
     children: [

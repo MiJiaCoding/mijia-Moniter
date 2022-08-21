@@ -37,7 +37,16 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    // 我注释掉的
+    before: require('./mock/mock-server.js'),
+    // 我添加的
+    proxy: {
+      '/': {
+        target: `http://localhost:3009/`,
+        changeOrigin: true,
+        ws: false
+      }
+    }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
