@@ -21,43 +21,59 @@
         >0.40s</el-descriptions-item>
       </el-descriptions>
     </el-card>
-    <el-card>
-      <PageLoad />
-    </el-card>
-    <el-card>
-      <h4>页面平均耗时</h4>
-      <el-divider />
-      <el-table :data="tableData" height="250" border style="width: 100%">
-        <el-table-column prop="url" label="URL" width="450" />
-        <el-table-column prop="fp" label="白屏时间(ms)" width="90" />
-        <el-table-column prop="fcp" label="首屏时间(ms)" width="90" />
-        <el-table-column prop="dom_ready" label="DOM构建时间(ms)" width="180" />
-        <el-table-column prop="dom_parse" label="解析dom时间(ms)" width="180" />
-        <el-table-column prop="dns" label="DNS解析时间(ms)" width="180" />
-      </el-table>
-    </el-card>
+    <el-row class="box-card">
+      <el-menu
+        :default-active="activeIndex"
+        mode="horizontal"
+        @select="handleSelect"
+      >
+        <el-menu-item index="1">性能统计</el-menu-item>
+        <el-menu-item index="2">页面关键性能指标</el-menu-item>
+      </el-menu>
+    </el-row>
+    <el-row v-if="activeIndex1 === '1'" :gutter="20" class="box-card">
+      <el-col :span="12" style="">
+        <el-card>
+          <System />
+        </el-card>
+      </el-col>
+      <el-col :span="12">
+        <el-card>
+          <Browser />
+        </el-card>
+      </el-col>
+    </el-row>
+    <el-row v-else>
+      <el-card>
+        <PageLoadTime />
+      </el-card>
+    </el-row>
   </div>
 </template>
 
 <script>
-import PageLoad from './PageLoad.vue'
+import System from './charts/System.vue'
+import Browser from './charts/Browser.vue'
+import PageLoadTime from './charts/PageLoadTime.vue'
 export default {
   name: '',
   components: {
-    PageLoad
+    System,
+    Browser,
+    PageLoadTime
   },
   data() {
     return {
-      tableData: [
-        {
-          url: 'https://blog.csdn.net/qq_44724181/article/details/120994479',
-          fp: 1,
-          fcp: 2,
-          dom_ready: 3,
-          dom_parse: 4,
-          dns: 5
-        }
-      ]
+      activeIndex: '1',
+      activeIndex1: '1'
+    }
+  },
+  // watch:{
+  //   activeIndex:
+  // }
+  methods: {
+    handleSelect() {
+      this.activeIndex1 = this.activeIndex1 === '2' ? '1' : '2'
     }
   }
 }

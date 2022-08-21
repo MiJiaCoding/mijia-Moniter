@@ -9,7 +9,7 @@
     </el-card>
     <!-- 实时PV -->
     <el-card class="box-card">
-      <!-- <PVGraphics /> -->
+      <PVGraphics />
     </el-card>
     <!-- 实时UV -->
     <el-card>
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-// import PVGraphics from './PVGraphics.vue'
+import PVGraphics from './PVGraphics.vue'
 import UVGraphics from './UVGraphics.vue'
 export default {
   name: '',
   components: {
-    // PVGraphics,
+    PVGraphics,
     UVGraphics
   },
   data() {
