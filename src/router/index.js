@@ -36,15 +36,15 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/exception/index'
-    // redirect:'/Exception_monitoring'
+    // redirect: '/exception/index'
+    redirect: '/Exception_monitoring'
   },
   {
 
     // path: '/exception',
     path: '/Exception_monitoring',
     component: Layout,
-    //http://localhost:9528/#/Exception_monitoring/exception
+    // http://localhost:9528/#/Exception_monitoring/exception
 
     // http://localhost:9528/#/exception/exception
     redirect: '/Exception_monitoring/exception',
@@ -61,24 +61,44 @@ export const constantRoutes = [
       }
     ]
   },
+  // {
+  //   path: '/documentation',
+  //   component: Layout,
+  //   redirect: '/exception/index', // 重定向地址，在面包屑中点击会重定向去的地址
+  //   alwaysShow: true, // 一直显示根路由
+  //   meta: { title: '异常监控', icon: 'documentation' },
+  //   children: [
+  //     {
+  //       path: 'index'
+  //       component: () => import('@/views/exception/index'),
+  //       name: 'Exception',
+  //       meta: { title: '异常监控', icon: 'documentation', affix: false }
+  //     },
+  //     {
+  //       path: 'xxx',
+  //       component: () => import('@/views/exception/index'),
+  //       name: 'xxx',
+  //       meta: { title: '异常监控', icon: 'documentation', affix: false }
+  //     }
+  //   ]
+  // },
   {
-    path: '/documentation',
+    path: '/abormalEvent',
     component: Layout,
-    redirect: '/exception/index', // 重定向地址，在面包屑中点击会重定向去的地址
-    alwaysShow: true, // 一直显示根路由
-    meta: { title: '异常监控', icon: 'documentation' },
-    children: [
+    name: 'AbormalEvent',
+    meta: { title: '异常事件', icon: 'el-icon-goods' },
+    children:[
       {
-        path: 'index',
-        component: () => import('@/views/exception/index'),
-        name: 'Exception',
-        meta: { title: '异常监控', icon: 'documentation', affix: false }
+        path: 'scriptException',
+        name: 'ScriptException',
+        component: () => import('@/views/abormalEvent/scriptException'),
+        meta: { title: '脚本异常' }
       },
       {
-        path: 'xxx',
-        component: () => import('@/views/exception/index'),
-        name: 'xxx',
-        meta: { title: '异常监控', icon: 'documentation', affix: false }
+        path: 'networkRequest',
+        name: 'NetworkRequest',
+        component: () => import('@/views/abormalEvent/networkRequest'),
+        meta: { title: '网络请求' }
       }
     ]
   },
