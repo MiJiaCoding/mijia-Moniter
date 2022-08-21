@@ -1,5 +1,5 @@
 <template>
-  <div id="load" style="height: 500px; width: 1000px" />
+  <div id="system" style="height: 400px; width: 500px" />
 </template>
 
 <script>
@@ -23,9 +23,11 @@ export default {
   },
   methods: {
     initChart() {
-      this.chart = echarts.init(document.getElementById('load'))
-      console.log(this.chart)
+      this.chart = echarts.init(document.getElementById('system'))
       this.chart.setOption({
+        title: {
+          text: '系统分类统计'
+        },
         tooltip: {
           trigger: 'item'
         },
@@ -59,11 +61,9 @@ export default {
               show: false
             },
             data: [
-              { value: 1048, name: 'Search Engine' },
-              { value: 735, name: 'Direct' },
-              { value: 580, name: 'Email' },
-              { value: 484, name: 'Union Ads' },
-              { value: 300, name: 'Video Ads' }
+              { value: 1048, name: 'windows' },
+              { value: 735, name: 'MAC OS' },
+              { value: 580, name: 'ISO' }
             ]
           }
         ]
