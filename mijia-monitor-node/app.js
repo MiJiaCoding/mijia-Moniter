@@ -24,8 +24,8 @@ app.use("/api/get/userAction", async (req, res) => {
   const total = await UserAction.find().count();
   const data = await UserAction.find()
     .sort({ createTime: -1 })
-    .limit(10)
-    .skip(10 * (page - 1));
+    // .limit(10)
+    // .skip(10 * (page - 1));
   res.json({
     total,
     pages: Math.ceil(total / 10),
@@ -36,24 +36,37 @@ app.use("/api/get/userAction", async (req, res) => {
 app.use("/api/get/errorLog", async (req, res) => {
   const page = req.query.page;
   const total = await ErrorLog.find().count();
+    // console.log(req.query);
   const data = await ErrorLog.find()
     .sort({ createTime: -1 })
-    .limit(10)
-    .skip(10 * (page - 1));
+    // .limit(10)
+    // .skip(10 * (page - 1));
   res.json({
     total,
     pages: Math.ceil(total / 10),
     data
   });
+
 })
+
+// app.get('/api/get/errorLog',(req,res)=>{
+//   let {pageIndex,pageSize} = req.query
+//   pageIndex = parseInt(pageIndex)
+//   pageIndex = parseInt(pageSize)
+//   ErrorLog.find().skip((pageIndex-1)*pageSize).limit(pageSize).then(r=>{
+//     res.send(r)
+//   })
+
+// })
+
 
 app.use("/api/get/visitLog", async (req, res) => {
   const page = req.query.page;
   const total = await VisitLog.find().count();
   const data = await VisitLog.find()
     .sort({ createTime: -1 })
-    .limit(10)
-    .skip(10 * (page - 1));
+    // .limit(10)
+    // .skip(10 * (page - 1));
   res.json({
     total,
     pages: Math.ceil(total / 10),

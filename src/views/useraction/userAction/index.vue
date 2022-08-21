@@ -1,101 +1,30 @@
 <template>
-    <!-- <el-table
-    :data="tableData"
-    border
-    style="width: 100%">
-    <el-table-column
-      prop="date"
-      label="日期"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="address"
-      label="地址">
-    </el-table-column>
-  </el-table> -->
+    <table>
+      <thead>
+          <tr>
+              <!-- <th>errMsg</th> -->
+              <th>_id</th>
+              <th>appId</th>
+              <th>userId</th>
+              <th>data</th>
+              <!-- <th>createTime</th> -->
+              <th>currentPage</th>
+              <th>ua</th>
+          </tr>
+      </thead>
+      <tbody id="shuju">
   
-    <!--按钮-->
-  
-    <!-- <el-button type="primary" icno="el-icon-refresh" style="margin:10px 0px">刷新</el-button> -->
-  
-    <!--
-      表格组件
-      data:表格组件将来需要展示的数据 ----数组类型
-      border:是给表格添加内边框
-      column属性
-      label:显示标题
-      width:对应列的狂赌
-      align：标题的对齐方式
-    -->
-    <div>
-    <el-table 
-    :data="tableData" 
-    style="width: 100%" >
-      <el-table-column 
-      prop="_id" 
-      label="_id"
-      align="center"
-   >
-    </el-table-column>
-      <el-table-column 
-      prop="appId"
-      label="appId"
-      align="center">
-      
-    </el-table-column>
-      <el-table-column
-      prop="userId" 
-      label="userId"
-      align="center">
-    </el-table-column>
-      <el-table-column 
-      prop="currentPage" 
-      label="页面位置"
-      align="center">
-    </el-table-column>
-      <el-table-column 
-      prop="errMsg" 
-      label="报错信息"
-      align="center">
-    </el-table-column>
-      <el-table-column 
-      prop='errorType' 
-      label="错误类型"
-      align="center">
-    </el-table-column>
-      <el-table-column 
-      prop="ua"
-      label="ua"
-      align="center">
-    </el-table-column>
-      <el-table-column 
-      prop="createTime" 
-      label="时间"
-      align="center">
-    </el-table-column>
-    </el-table>
-  
-    <!-- <el-pagination
-    @size-change="handleSizeChange"
-    @current-change="handleCurrentChange"
-    :current-page="currentPage"
-    :page-sizes="[5, 10, 20 , 30 , 50]"
-    :page-size="pageSize"
-    layout="total, sizes, prev, pager, next, jumper"
-    :total="total">
-  </el-pagination> -->
-  </div>
+      </tbody>
+      </table>
     
     
-  
+   
   
   </template>
+  
+  
   <script>
+    
   
   // export default {
   //   name: 'ScriptException',
@@ -144,103 +73,57 @@
           //         }
           //     }
           // }
-  import {scriptexception} from '@/api/api.js'
-  import { thisExpression } from '@babel/types';
-  export default{
-    data(){
-      return {
-        tableData : [{
-          errMsg:'',
-          _id:'',
-          appId:'',
-          userId:'',
-          errorType:'',
-          createTime:0,
-          currentPage:'',
-          ua:'',
-          __v:0
-        }],
-        // currentPage: 1,// 当前页数
-        // pageSize: 10, // 每页显示条数
-        // total :0
-        
+          // let bing= {
+          //   $get:function(url,callback){
+          //      // 01.创建ajax对象
+          //       let xhr =new XMLHttpRequest()
+          //       // 02.初始化请求
+          //       xhr.open('GET',url)
+          //       // 03.发送请求
+          //       xhr.send()
+          //       // 04.监听读取状态事件
+          //       xhr.onreadystatechange=function(){
+          //           if(xhr.readyState===4){
+          //               // 判断请求是否成功
+          //               if(xhr.status===200){
+          //                   console.log(xhr.response);  // JSON
+          //                   callback(JSON.parse(xhr.response) )
+          //               }
+          //             }
+          //           }
+                  
+          //   }
+          // }
+       
+          // bing.$get('http://localhost:3009/api/get/errorLog',list=>{
+          //   list.data.forEach(r => {
+          //                 let tr = document.createElement('tr')
+          //                 let td1=document.createElement('td')
+          //                 td1.innerHTML= r.errMsg
+          //                 let td2=document.createElement('td')
+          //                 td2.innerHTML=r._id
+          //                 let td3=document.createElement('td')
+          //                 td3.innerHTML=r.appId
+          //                 let td4=document.createElement('td')
+          //                 td4.innerHTML=r.userId
+          //                 let td5=document.createElement('td')
+          //                 td5.innerHTML=r.errorType
+          //                 let td6=document.createElement('td')
+          //                 td6.innerHTML=r.creatTime
+          //                 let td7=document.createElement('td')
+          //                 td7.innerHTML=r.currentPage
+          //                 let td8=document.createElement('td')
+          //                 td8.innerHTML=r.ua
+            
+          
+            
+          // })
+          let pageIndex=1 // 定义页码
   
-      // tableData: [{
-      //     errMsg:'手动捕获错误',
-      //     _id:'62f869420bf39f537039d4b4',
-      //     appId:'react0001',
-      //     userId:'user0008',
-      //     errorType:'catchError',
-      //     createTime:1660447042510,
-      //     currentPage:'http://localhost:3001/#/page2',
-      //     ua:'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
-      //     __v:0
-      //     }, {
-      //     errMsg:'手动捕获错误',
-      //     _id:'62f869420bf39f537039d4b4',
-      //     appId:'hahhaha',
-      //     userId:'user0008',
-      //     errorType:'catchError',
-      //     createTime:1660447042510,
-      //     currentPage:'http://localhost:3001/#/page2',
-      //     ua:'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
-      //     __v:0
-      //     }]
-      };
-    },
-    // created(){
-    //   // this.getData()
-  
-    //   // 01.创建ajax对象
-    //   let xhr =new XMLHttpRequest()
-    //       // 02.初始化请求
-    //       xhr.open('GET','http://localhost:3009/api/get/errorLog')
-    //       // 03.发送请求
-    //       xhr.send()
-    //       // 04.监听读取状态事件
-    //       xhr.onreadystatechange=function(){
-    //           if(xhr.readyState===4){
-    //               // 判断请求是否成功
-    //               if(xhr.status===200){
-    //                   console.log(xhr.response); // JSON
-  
-    //                   let list = JSON.parse(xhr.response)
-  
-    //                   console.log(list);// object
-    //                   console.log(list.data); //Array
-    //                   // this.tableData.push(list.data)
-    //                   this.tableData=list.data
-    //                   this.total =list.total
-    //                   console.log(this.total)
-  
-  
-                    
-    //               }
-    //           }
-    //       }
-    // },
-    // methods: {
-    //   getData(params) {
-    //     scriptexception(params)
-    //     .then(res=>{
-    //       console.log(res)
-    //       if(res.data.status===200){
-    //         this.tableData = res.data.data
-    //       }
-    //     })
-    //   }
-    // }
-  
-    // methods:{
-    //   getData(list){
-    //     this.list
-    //   }
-    // }
-    mounted(){
-      // 01.创建ajax对象
-      let xhr =new XMLHttpRequest()
+           // 01.创建ajax对象
+           let xhr =new XMLHttpRequest()
           // 02.初始化请求
-          xhr.open('GET','http://localhost:3009/api/get/userAction')
+          xhr.open('GET',`http://localhost:3009/api/get/userAction`)
           // 03.发送请求
           xhr.send()
           // 04.监听读取状态事件
@@ -248,31 +131,90 @@
               if(xhr.readyState===4){
                   // 判断请求是否成功
                   if(xhr.status===200){
-                      console.log(xhr.response); // JSON
+                      console.log(xhr.response);  // JSON
+                      let list = JSON.parse(xhr.response) 
   
-                      let list = JSON.parse(xhr.response)
-  
-                      console.log(list);// object
-                      console.log(list.data); //Array
-                      this.tableData.push(list.data)
-                      this.tableData=list.data
-                      this.total =list.total
-                      console.log(this.total)
-                      console.log('我是tableData里面的数据',this.tableData)
+                      console.log(list); // object
+                      console.log(list.data);  //Array
   
   
-                    
+                      list.data.forEach(r => {
+                          let tr = document.createElement('tr')
+                        //   let td1=document.createElement('td')
+                        //   td1.innerHTML= r.errMsg
+                          let td2=document.createElement('td')
+                          td2.innerHTML=r._id
+                          let td3=document.createElement('td')
+                          td3.innerHTML=r.appId
+                          let td4=document.createElement('td')
+                          td4.innerHTML=r.userId
+                          let td5=document.createElement('td')
+                          td5.innerHTML=r.data
+                        //   let td6=document.createElement('td')
+                        //   td6.innerHTML=r.creatTime
+                          let td7=document.createElement('td')
+                          td7.innerHTML=r.currentPage
+                          let td8=document.createElement('td')
+                          td8.innerHTML=r.ua
+  
+                          // let td9=document.createElement('td')                        
+                          // let btn1=document.createElement('button')
+                          // btn1.innerHTML='编辑'
+                          // let btn2=document.createElement('button')
+                          // btn2.innerHTML='删除'
+                          
+                          // td9.appendChild(btn1)
+                          // td9.appendChild(btn2)
+  
+                        //   tr.appendChild(td1)
+                          tr.appendChild(td2)
+                          tr.appendChild(td3)
+                          tr.appendChild(td4)
+                          tr.appendChild(td5)
+                        //   tr.appendChild(td6)
+                          tr.appendChild(td7)
+                          tr.appendChild(td8)
+                          document.querySelector('#shuju').appendChild(tr)
+  
+                      });
                   }
               }
           }
-    }
+          function loadData(){}
+  
+  
+  
+          function getime(a) {
+  return new Date(parseInt(a) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
   }
+  
+  
+          
+  
+  export default{
+  }
+  
   
   
   
   </script>
   
   <style scoped>
+          *{
+              margin:0;
+              padding:0;
+              list-style: none;
+              outline: none;
+              text-decoration:none;
+          }
+          table{
+              border-collapse:collapse;
+          }
+          td,th{
+              border:1px solid #ccc;
+              padding:2px 20px;
+          }
+       
   
   </style>
   
