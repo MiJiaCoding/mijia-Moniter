@@ -138,12 +138,25 @@ export const constantRoutes = [
   {
     path: '/useraction',
     component: Layout,
+    meta: { title: '行为监控', icon: 'documentation' },
     children: [
       {
         path: 'index',
         component: () => import('@/views/useraction/index'),
         name: 'UserAction',
         meta: { title: '用户行为数据', icon: 'documentation', affix: false }
+      },
+      {
+        path: 'userAction',
+        name: 'maidian',
+        component: () => import('@/views/useraction/userAction/index'),
+        meta: { title: '埋点数据' ,icon: 'documentation',}
+      },
+      {
+        path: 'actionLog',
+        name: 'actionLog',
+        component: () => import('@/views/useraction/actionLog/index'),
+        meta: { title: '行为日志-停留时间' ,icon: 'documentation',}
       }
     ]
   }

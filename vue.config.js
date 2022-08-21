@@ -65,7 +65,7 @@ module.exports = {
       {
         rel: 'preload',
         // to ignore runtime.js
-        // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
+        // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-s  ervice/lib/config/app.js#L171
         fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
         include: 'initial'
       }

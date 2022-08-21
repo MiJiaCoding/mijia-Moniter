@@ -18,7 +18,10 @@ import * as filters from './filters' // global filters
 Vue.use(Element)
 
 import * as echarts from 'echarts'
+import request from './utils/request.js'
 Vue.prototype.$echarts = echarts
+Vue.prototype.request = request
+
 /**
  如果不想使用模拟服务器，则必须将404页面放置在endIf中
  你想使用MockJs来模拟api
