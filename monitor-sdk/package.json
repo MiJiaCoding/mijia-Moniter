@@ -1,0 +1,19 @@
+{
+  "name": "monitor-sdk",
+  "version": "1.0.0",
+  "description": "前端监控sdk",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "serve": "rollup -c -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.18.10",
+    "@rollup/plugin-babel": "^5.3.1",
+    "rollup": "^2.77.2",
+    "rollup-plugin-babel": "^4.4.0"
+  }
+}

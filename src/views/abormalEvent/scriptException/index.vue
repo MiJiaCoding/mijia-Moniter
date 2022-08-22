@@ -7,7 +7,7 @@
             <th>appId</th>
             <th>userId</th>
             <th>errorType</th>
-            <th>createTime</th>
+            <!-- <th>createTime</th> -->
             <th>currentPage</th>
             <th>ua</th>
         </tr>
@@ -123,7 +123,7 @@
          // 01.创建ajax对象
          let xhr =new XMLHttpRequest()
         // 02.初始化请求
-        xhr.open('GET',`http://localhost:3009/api/get/errorLog?pageIndex=${pageIndex}&pageSize=10`)
+        xhr.open('GET',`http://localhost:3009/api/get/errorLog`)
         // 03.发送请求
         xhr.send()
         // 04.监听读取状态事件
@@ -150,8 +150,8 @@
                         td4.innerHTML=r.userId
                         let td5=document.createElement('td')
                         td5.innerHTML=r.errorType
-                        let td6=document.createElement('td')
-                        td6.innerHTML=r.creatTime
+                        // let td6=document.createElement('td')
+                        // td6.innerHTML=r.creatTime
                         let td7=document.createElement('td')
                         td7.innerHTML=r.currentPage
                         let td8=document.createElement('td')
@@ -171,7 +171,7 @@
                         tr.appendChild(td3)
                         tr.appendChild(td4)
                         tr.appendChild(td5)
-                        tr.appendChild(td6)
+                        // tr.appendChild(td6)
                         tr.appendChild(td7)
                         tr.appendChild(td8)
                         document.querySelector('#shuju').appendChild(tr)
