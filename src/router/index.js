@@ -37,30 +37,43 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     // redirect: '/exception/index'
-    redirect: '/Exception_monitoring'
+    redirect: '/overview/index'
   },
+
   {
-
-    // path: '/exception',
-    path: '/Exception_monitoring',
+    path: '/overview',
     component: Layout,
-    // http://localhost:9528/#/Exception_monitoring/exception
-
-    // http://localhost:9528/#/exception/exception
-    redirect: '/Exception_monitoring/exception',
-    name: 'Exception_monitoring',
-    children: [
-      {
-        path: 'exception',
-        component: () => import('@/views/Exception_monitoring/exception'),
-        name: 'exception',
-        meta: {
-          title: '健康状况',
-          icon: 'el-icon-warning'
-        }
-      }
-    ]
+    children: [{
+      path: 'index',
+      component: () => import('@/views/overview/index'),
+      name: 'Overview',
+      meta: { title: '总览', icon: 'el-icon-house', affix: false }
+    }]
   },
+
+  // tangtang 's jiemian
+  // {
+  //   // path: '/exception',
+  //   path: '/Exception_monitoring',
+  //   component: Layout,
+  //   // http://localhost:9528/#/Exception_monitoring/exception
+
+  //   // http://localhost:9528/#/exception/exception
+  //   redirect: '/Exception_monitoring/exception',
+  //   name: 'Exception_monitoring',
+  //   children: [
+  //     {
+  //       path: 'exception',
+  //       component: () => import('@/views/Exception_monitoring/exception'),
+  //       name: 'exception',
+  //       meta: {
+  //         title: '健康状况',
+  //         icon: 'el-icon-warning'
+  //       }
+  //     }
+  //   ]
+  // },
+  
   // {
   //   path: '/documentation',
   //   component: Layout,
@@ -86,19 +99,19 @@ export const constantRoutes = [
     path: '/abormalEvent',
     component: Layout,
     name: 'AbormalEvent',
-    meta: { title: '异常事件', icon: 'el-icon-goods' },
+    meta: { title: '异常监控', icon: 'el-icon-goods' },
     children:[
+      {
+        path: 'index',
+        component: () => import('@/views/exception/index'),
+        name: 'Exception',
+        meta: { title: '数据统计', icon: 'el-icon-s-data', affix: false }
+      },
       {
         path: 'scriptException',
         name: 'ScriptException',
         component: () => import('@/views/abormalEvent/scriptException'),
-        meta: { title: '脚本异常' }
-      },
-      {
-        path: 'networkRequest',
-        name: 'NetworkRequest',
-        component: () => import('@/views/abormalEvent/networkRequest'),
-        meta: { title: '网络请求' }
+        meta: { title: '异常日志', icon: 'el-icon-warning' }
       }
     ]
   },
@@ -150,13 +163,13 @@ export const constantRoutes = [
         path: 'userAction',
         name: 'maidian',
         component: () => import('@/views/useraction/userAction/index'),
-        meta: { title: '埋点数据' ,icon: 'documentation',}
+        meta: { title: '埋点数据' ,icon: 'el-icon-map-location',}
       },
       {
         path: 'actionLog',
         name: 'actionLog',
         component: () => import('@/views/useraction/actionLog/index'),
-        meta: { title: '行为日志-停留时间' ,icon: 'documentation',}
+        meta: { title: '行为日志-停留时间' ,icon: 'el-icon-timer',}
       }
     ]
   }

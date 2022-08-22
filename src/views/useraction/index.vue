@@ -1,18 +1,32 @@
 <template>
   <div>
     <el-card class="box-card">
-      <el-descriptions title="今日概括">
-        <el-descriptions-item label="PV">145555</el-descriptions-item>
-        <el-descriptions-item label="UV">181000</el-descriptions-item>
-        <el-descriptions-item label="IP">2087</el-descriptions-item>
+      <div slot="header" class="clearfix">
+        <span>今日概况</span>
+      </div>
+      <el-descriptions style="font-size: 30px">
+        <el-descriptions-item
+          label="PV"
+        ><span class="red">139</span>
+        </el-descriptions-item>
+        <el-descriptions-item
+          label="UV"
+        ><span class="red">5</span></el-descriptions-item>
+        <el-descriptions-item label="IP">3</el-descriptions-item>
       </el-descriptions>
     </el-card>
     <!-- 实时PV -->
     <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>实时访问PV</span>
+      </div>
       <PVGraphics />
     </el-card>
     <!-- 实时UV -->
     <el-card>
+      <div slot="header" class="clearfix">
+        <span>实时访问UV</span>
+      </div>
       <UVGraphics />
     </el-card>
   </div>
@@ -35,7 +49,10 @@ export default {
 }
 </script>
 <style scoped>
-.box-card{
-    margin-bottom: 4vh;
+.box-card {
+  margin-bottom: 4vh;
+}
+.red {
+  color: red;
 }
 </style>
